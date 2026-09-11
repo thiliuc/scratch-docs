@@ -1,0 +1,8 @@
+cat("==> Running Bioinformatics Integration Pipeline...\n\n")
+df <- read.csv('sequence_metrics.csv', stringsAsFactors = FALSE)
+print(df)
+cat(sprintf("\n==> Summary Across %d Sequences:\nAvg GC Proportion: %.2f%%\nAvg Length:       %.1f bp\n", nrow(df), mean(df$GC_Content), mean(df$Length)))
+pdf('test_plot.pdf', 7, 5)
+barplot(df$GC_Content, names.arg = df$ID, ylab = "GC %", ylim = c(0, 100), las = 1)
+dev.off()
+cat("==> Potting Complete!\n")
